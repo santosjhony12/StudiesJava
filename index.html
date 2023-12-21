@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mascaras</title>
+</head>
+<body>
+    <h1>Aprendendo usar mascaras com JAVASCRIPT PURO</h1>
+    <form action="">
+        
+        <label for="">CEP</label>
+        <input type="text" id="cep">
+        <label for="">Telefone</label>
+        <input type="text" id="phone">
+        <label for="">CPF</label>
+        <input type="text" id="cpf">
+        <button type="button" onclick="mudarValor()">Clique aqui</button>
+    
+    </form>
+
+    <ul id="lista">
+        <li class="item">A</li>
+        <li class="item">B</li>
+        <li class="item">C</li>
+        <li class="item">D</li>
+    </ul>
+
+    <ul id="lista2">
+        <li class="item">E</li>
+        <li class="item">F</li>
+        <li class="item">G</li>
+        <li class="item">H</li>
+    </ul>
+    <h3 id="cpfescrito"></h3>
+    <h3 id="novoValor"></h3>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdnjs.com/libraries/jquery.mask"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js" integrity="sha512-0XDfGxFliYJPFrideYOoxdgNIvrwGTLnmK20xZbCAvPfLGQMzHUsaqZK8ZoH+luXGRxTrS46+Aq400nCnAT0/w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+    
+        $(document).ready(function (){
+            $('#cep').mask('00000-000');
+            $('#phone').mask('(00) 00000-0000')
+            var maskCpf = $('#cpf').mask('000.000.000-00');
+
+            $('#cpf').on('input', function (){
+                var cpf = maskCpf.cleanVal();
+                $('#cpfescrito').text(cpf)
+
+            })
+        })
+
+        function mudarValor(){
+            var cpfNovo = document.getElementById('cpf').value;
+            document.getElementById('novoValor').innerHTML = cpfNovo;
+        }
+
+        var selectAll = document.getElementsByClassName('item')
+        // console.log(selectAll[6])
+
+        // seleciono através de mais parametros
+        var selectQueryAll = document.querySelectorAll('#lista2 .item')
+        console.log(selectQueryAll)
+
+        // pega apenas um item 
+        var selectJustOneElement = document.querySelector('#lista .item')
+        console.log("Primeiro elemento da primeira lista: ", selectJustOneElement)
+
+        // criando novo ELEMENTO PELO DOM
+        var novoParagrafo = document.createElement("p")
+        var texto = document.createTextNode("Este é o conteudo do paragrafo")
+        novoParagrafo.appendChild(texto)
+        var body = document.querySelector("body")
+        // adiciona em um elemento pai
+        body.appendChild(novoParagrafo)
+        //insert antes (filho, onde)
+        var lista2 = document.getElementById('lista2')
+        body.insertBefore(novoParagrafo, lista2)
+
+        //colocando uma classe no elemento
+        novoParagrafo.classList = "paragrafo";
+
+        // REMOVER UM ELEMENTO
+
+        var campoCpf = document.getElementById('cpf')
+        var form = document.querySelector('form')
+        //form.removeChild(campoCpf)
+        var h1 = document.querySelector('h1')
+
+        // CSS NO JAVASCRIPT
+        h1.style.color = "red"      
+        h1.style.cssText = "background: pink; font-size: 3em;" 
+
+        // alterando atributos
+        h1.setAttribute("id", "title")
+        var button = document.querySelector('button')
+        button.setAttribute('disabled', 'disabled')
+        console.log(h1)
+        
+
+    </script>
+</body>
+</html>
